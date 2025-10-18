@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Running CRUD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bulma (CDN) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+
+    <!-- Estilos propios -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <h1 class="title">Mis registros de Running</h1>
+        <p class="subtitle">CRUD básico con Bulma + LocalStorage</p>
+
+        <!-- Formulario -->
+        <div class="box">
+          <form id="runForm" class="form">
+            <!-- hidden para saber si estoy editando -->
+            <input type="hidden" id="runId" />
+
+            <div class="columns is-multiline">
+              <div class="column is-12-mobile is-4-tablet">
+                <label class="label" for="date">Fecha</label>
+                <input class="input" type="date" id="date" required />
+              </div>
+
+              <div class="column is-12-mobile is-4-tablet">
+                <label class="label" for="distance">Distancia (km)</label>
+                <input
+                  class="input"
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  id="distance"
+                  placeholder="Ej. 5.00"
+                  required
+                />
+              </div>
+
+              <div class="column is-12-mobile is-4-tablet">
+                <label class="label" for="duration">Tiempo (hh:mm:ss)</label>
+                <input
+                  class="input"
+                  type="text"
+                  id="duration"
+                  placeholder="Ej. 00:25:30"
+                  required
+                />
+              </div>
+
+              <div class="column is-12-mobile is-12-tablet">
+                <label class="label" for="notes">Notas (opcional)</label>
+                <input
+                  class="input"
+                  type="text"
+                  id="notes"
+                  placeholder="Ej. Ritmo suave, clima nublado..."
+                />
+              </div>
+            </div>
+
+            <div class="buttons">
+              <button class="button is-primary" type="submit" id="saveBtn">
+                Guardar
+              </button>
+              <button class="button is-warning" type="button" id="resetBtn">
+                Limpiar formulario
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Filtros / acciones -->
+        <div class="level">
+          <div class="level-left">
+            <div class="level-item">
+              <div class="field has-addons">
+                <div class="control">
+                  <input
+                    id="searchInput"
+                    class="input"
+                    type="text"
+                    placeholder="Buscar por nota o fecha (YYYY-MM-DD)"
+                  />
+                </div>
+                <div class="control">
+                  <button id="searchClearBtn" class="button">
+                    Limpiar búsqueda
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="level-right">
+            <div class="level-item">
+              <button id="clearAllBtn" class="button is-danger is-light">
+                Borrar todo
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabla -->
+        <div class="table-container">
+          <table class="table is-fullwidth is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Distancia (km)</th>
+                <th>Tiempo</th>
+                <th>Ritmo (min/km)</th>
+                <th>Notas</th>
+                <th class="has-text-right">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="runsTbody">
+              <!-- filas generadas por JS -->
+            </tbody>
+            <tfoot>
+              <tr>
+                <th>Total</th>
+                <th id="sumDistance">0.00</th>
+                <th id="sumDuration">00:00:00</th>
+                <th id="avgPace">—</th>
+                <th colspan="2"></th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- JS -->
+    <script src="app.js" defer></script>
+  </body>
+</html>

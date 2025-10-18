@@ -1,0 +1,21 @@
+/* Ajustes mínimos para que se vea limpio */
+body {
+  background: #f7f7fb;
+}
+
+/* Espaciado de la caja del formulario */
+.box {
+  border-radius: 10px;
+}
+
+/* Alinear botones de acciones a la derecha en la tabla */
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+/* Inputs más cómodos en móviles */
+input.input {
+  font-size: 1rem;
+}
