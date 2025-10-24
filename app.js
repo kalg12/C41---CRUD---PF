@@ -1,6 +1,7 @@
 // PASO 1: Definir claves y referencias del DOM
 const LS_KEY = "runs"; // clave de LocalStorage para persistir el arreglo
 
+//En estas líneas nosotros recuperamos elementos HTML para usarlos en el JS
 const runForm = document.getElementById("runForm");
 const runId = document.getElementById("runId");
 const dateInput = document.getElementById("date");
@@ -8,6 +9,7 @@ const distanceInput = document.getElementById("distance");
 const durationInput = document.getElementById("duration");
 const notesInput = document.getElementById("notes");
 
+// Elementos de la tabla
 const runsTbody = document.getElementById("runsTbody");
 const sumDistance = document.getElementById("sumDistance");
 const sumDuration = document.getElementById("sumDuration");
@@ -199,6 +201,7 @@ function onSubmit(e) {
 
 // PASO 7: Editar (cargar datos al formulario)
 function onEdit(id) {
+  console.log("El id que elegiste es: " + id);
   const run = runs.find((r) => r.id === id);
   if (!run) return;
 
