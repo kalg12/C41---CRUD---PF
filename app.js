@@ -216,14 +216,32 @@ function onEdit(id) {
 
 // PASO 8: Eliminar (D)
 function onDelete(id) {
-  if (!confirm("¿Eliminar este registro?")) return;
-  runs = runs.filter((r) => r.id !== id);
-  saveToLocalStorage();
-  renderTable(searchInput.value);
+  Swal.fire({
+    title: "¿Eliminar este registro?",
+    text: "Esta acción no se puede deshacer.",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#e74c3c",
+    cancelButtonColor: "#3085d6",
+    confirmButtonText: "Sí, eliminar",
+    cancelButtonText: "Cancelar",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      runs = runs.filter((r) => r.id !== id);
+      saveToLocalStorage();
+      renderTable(searchInput.value);
+    }
+  });
 }
 
 // PASO 9: Resetear formulario
 function resetForm() {
+  /* Agregamos función para alertas bonitas */
+  Swal.fire({
+    title: "Cambios aplicados",
+    icon: "success",
+    draggable: true,
+  });
   runId.value = "";
   runForm.reset();
   saveBtn.textContent = "Guardar";
