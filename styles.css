@@ -101,3 +101,58 @@ input.input {
     margin-top: 2rem;
   }
 }
+
+/* Nuevo efecto */
+/* === 🎃 Halloween Mode === */
+body.halloween {
+  background-color: #1a1a1a;
+  color: #f79c42;
+  transition: background 0.6s ease, color 0.6s ease;
+}
+
+h1.title,
+p.subtitle {
+  color: #ff7518;
+}
+
+/* 🦇 Animación de murciélagos */
+.bats {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.bat {
+  position: absolute;
+  width: 40px;
+  animation: fly 8s linear infinite;
+  opacity: 0.8;
+}
+
+.bat:nth-child(1) {
+  left: 10%;
+  animation-delay: 0s;
+}
+.bat:nth-child(2) {
+  left: 50%;
+  animation-delay: 2s;
+}
+.bat:nth-child(3) {
+  left: 80%;
+  animation-delay: 4s;
+}
+
+@keyframes fly {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(30px) rotate(10deg);
+  }
+  100% {
+    transform: translateY(0) rotate(-10deg);
+  }
+}

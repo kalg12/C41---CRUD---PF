@@ -281,3 +281,88 @@ function init() {
 
 // PASO 13: Arranque
 document.addEventListener("DOMContentLoaded", init);
+
+// PASO 14: Inicializar tooltips con Tippy.js
+document.addEventListener("DOMContentLoaded", () => {
+  tippy("#saveBtn", {
+    content: "Guarda o actualiza un registro",
+    placement: "bottom",
+    animation: "scale",
+  });
+
+  tippy("#resetBtn", {
+    content: "Limpia los campos del formulario",
+    placement: "bottom",
+    animation: "scale",
+  });
+
+  tippy("#clearAllBtn", {
+    content: "Elimina todos los registros guardados",
+    placement: "bottom",
+    animation: "scale",
+  });
+
+  tippy("#searchClearBtn", {
+    content: "Borra el texto de búsqueda",
+    placement: "bottom",
+    animation: "scale",
+  });
+
+  tippy("#searchInput", {
+    content: "Busca registros por fecha o notas",
+    placement: "bottom",
+    animation: "shift-away",
+  });
+});
+
+// PASO 15: 🎃 Activar modo Halloween automáticamente al cargar
+document.addEventListener("DOMContentLoaded", () => {
+  document.body.classList.add("halloween");
+
+  Swal.fire({
+    title: "🎃 ¡Feliz Halloween!",
+    text: "Modo temático activado 🦇",
+    imageUrl: "./img/bats.png",
+    background: "#2b2b2b",
+    color: "#ff7518",
+    confirmButtonColor: "#ff7518",
+  });
+});
+
+// PASO 16: 🎉 Confetti Halloween al guardar o eliminar
+function lanzarConfettiHalloween() {
+  confetti({
+    particleCount: 100,
+    spread: 60,
+    origin: { y: 0.6 },
+    colors: ["#ff7518", "#6a0dad", "#000000", "#ffb347"],
+  });
+}
+
+// Inyectamos confetti en las acciones clave
+const originalResetForm = resetForm;
+resetForm = function () {
+  originalResetForm();
+  lanzarConfettiHalloween();
+};
+
+const originalOnDelete = onDelete;
+onDelete = function (id) {
+  Swal.fire({
+    title: "¿Eliminar este registro?",
+    text: "Esta acción no se puede deshacer.",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#e74c3c",
+    cancelButtonColor: "#3085d6",
+    confirmButtonText: "Sí, eliminar",
+    cancelButtonText: "Cancelar",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      runs = runs.filter((r) => r.id !== id);
+      saveToLocalStorage();
+      renderTable(searchInput.value);
+      lanzarConfettiHalloween();
+    }
+  });
+};
