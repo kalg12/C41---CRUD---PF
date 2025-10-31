@@ -1,21 +1,103 @@
-/* Ajustes mínimos para que se vea limpio */
 body {
   background: #f7f7fb;
 }
 
-/* Espaciado de la caja del formulario */
+/* Caja del formulario */
 .box {
   border-radius: 10px;
 }
 
-/* Alinear botones de acciones a la derecha en la tabla */
+/* Alinear botones de acciones */
 .actions {
   display: flex;
   gap: 0.5rem;
   justify-content: flex-end;
 }
 
-/* Inputs más cómodos en móviles */
+/* Inputs más cómodos */
 input.input {
   font-size: 1rem;
+}
+
+/* 🔍 Sección de búsqueda responsiva */
+.search-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+/* Contenedor del input y botón */
+.search-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* --- 📱 Móviles (por defecto) --- */
+#searchInput {
+  width: 100%;
+}
+
+/* --- 💻 Tablets --- */
+@media screen and (min-width: 768px) {
+  .search-container {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  #searchInput {
+    flex: 2;
+    font-size: 1.05rem;
+  }
+
+  #searchClearBtn {
+    flex: 1;
+  }
+
+  .search-section {
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* --- 🖥️ Escritorio --- */
+@media screen and (min-width: 1024px) {
+  .search-section {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .search-container {
+    flex-direction: row;
+    width: 70%;
+  }
+
+  #searchInput {
+    flex: 3;
+    font-size: 1.1rem;
+  }
+
+  #searchClearBtn {
+    flex: none;
+    width: 180px;
+  }
+
+  #clearAllBtn {
+    width: 150px;
+  }
+}
+
+/* --- 🧾 Separación visual entre el botón y la tabla --- */
+.table-container {
+  margin-top: 1.5rem; /* agrega aire visual */
+}
+
+/* En pantallas grandes, más espacio */
+@media screen and (min-width: 1024px) {
+  .table-container {
+    margin-top: 2rem;
+  }
 }

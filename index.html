@@ -23,7 +23,6 @@
         <!-- Formulario -->
         <div class="box">
           <form id="runForm" class="form">
-            <!-- hidden para saber si estoy editando -->
             <input type="hidden" id="runId" />
 
             <div class="columns is-multiline">
@@ -79,33 +78,21 @@
         </div>
 
         <!-- Filtros / acciones -->
-        <div class="level">
-          <div class="level-left">
-            <div class="level-item">
-              <div class="field has-addons">
-                <div class="control">
-                  <input
-                    id="searchInput"
-                    class="input"
-                    type="text"
-                    placeholder="Buscar por nota o fecha (YYYY-MM-DD)"
-                  />
-                </div>
-                <div class="control">
-                  <button id="searchClearBtn" class="button">
-                    Limpiar búsqueda
-                  </button>
-                </div>
-              </div>
-            </div>
+        <div class="search-section">
+          <div class="search-container">
+            <input
+              id="searchInput"
+              class="input"
+              type="text"
+              placeholder="Buscar por nota o fecha (YYYY-MM-DD)"
+            />
+            <button id="searchClearBtn" class="button is-light">
+              Limpiar búsqueda
+            </button>
           </div>
-          <div class="level-right">
-            <div class="level-item">
-              <button id="clearAllBtn" class="button is-danger is-light">
-                Borrar todo
-              </button>
-            </div>
-          </div>
+          <button id="clearAllBtn" class="button is-danger is-light">
+            Borrar todo
+          </button>
         </div>
 
         <!-- Tabla -->
@@ -121,9 +108,7 @@
                 <th class="has-text-right">Acciones</th>
               </tr>
             </thead>
-            <tbody id="runsTbody">
-              <!-- filas generadas por JS -->
-            </tbody>
+            <tbody id="runsTbody"></tbody>
             <tfoot>
               <tr>
                 <th>Total</th>
@@ -138,7 +123,6 @@
       </div>
     </section>
 
-    <!-- JS -->
     <script src="app.js" defer></script>
   </body>
 </html>
